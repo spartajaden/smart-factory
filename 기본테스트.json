@@ -1,0 +1,70 @@
+[
+    {
+        "id": "f12fc5fafe1d22aa",
+        "type": "inject",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "안녕하세요.",
+        "payload": "",
+        "payloadType": "date",
+        "x": 240,
+        "y": 140,
+        "wires": [
+            [
+                "4f0865b4a32b96ba"
+            ]
+        ]
+    },
+    {
+        "id": "6f2f7bd8ebdaeb93",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 780,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "4f0865b4a32b96ba",
+        "type": "exec",
+        "z": "f6f2187d.f17ca8",
+        "command": "",
+        "addpay": "",
+        "append": "c-1 py2modbus-client-lab-1",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "",
+        "x": 470,
+        "y": 140,
+        "wires": [
+            [
+                "6f2f7bd8ebdaeb93"
+            ],
+            [],
+            []
+        ]
+    }
+]
