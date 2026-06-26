@@ -1,0 +1,182 @@
+[
+    {
+        "id": "8884abe610db7bcb",
+        "type": "inject",
+        "z": "6093ea57ed11c78f",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "코일 ON",
+        "payloadType": "str",
+        "x": 240,
+        "y": 140,
+        "wires": [
+            [
+                "68a89b0e0ae74004"
+            ]
+        ]
+    },
+    {
+        "id": "39f8071f099095b4",
+        "type": "inject",
+        "z": "6093ea57ed11c78f",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "코일 OFF",
+        "payloadType": "str",
+        "x": 240,
+        "y": 240,
+        "wires": [
+            [
+                "68a89b0e0ae74004"
+            ]
+        ]
+    },
+    {
+        "id": "f32c974f964bd626",
+        "type": "debug",
+        "z": "6093ea57ed11c78f",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 760,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "68a89b0e0ae74004",
+        "type": "modbus-write",
+        "z": "6093ea57ed11c78f",
+        "name": "코일 쓰기",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "showWarnings": true,
+        "unitid": "",
+        "dataType": "Coil",
+        "adr": "0",
+        "quantity": "1",
+        "server": "fc259f68b148e3c3",
+        "emptyMsgOnFail": false,
+        "keepMsgProperties": false,
+        "delayOnStart": false,
+        "startDelayTime": "",
+        "x": 500,
+        "y": 180,
+        "wires": [
+            [
+                "f32c974f964bd626"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "cd88b49cd7e96110",
+        "type": "modbus-read",
+        "z": "6093ea57ed11c78f",
+        "name": "코일값 읽기",
+        "topic": "",
+        "showStatusActivities": false,
+        "logIOActivities": false,
+        "showErrors": false,
+        "showWarnings": true,
+        "unitid": "1",
+        "dataType": "Coil",
+        "adr": "0",
+        "quantity": "8",
+        "rate": "3",
+        "rateUnit": "s",
+        "delayOnStart": false,
+        "enableDeformedMessages": false,
+        "startDelayTime": "",
+        "server": "fc259f68b148e3c3",
+        "useIOFile": false,
+        "ioFile": "",
+        "useIOForPayload": false,
+        "emptyMsgOnFail": false,
+        "x": 280,
+        "y": 340,
+        "wires": [
+            [
+                "b91b377f6f3dbab3"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "b91b377f6f3dbab3",
+        "type": "debug",
+        "z": "6093ea57ed11c78f",
+        "name": "debug 3",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 600,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "fc259f68b148e3c3",
+        "type": "modbus-client",
+        "name": "컨테이너의 모드버스 서버",
+        "clienttype": "tcp",
+        "bufferCommands": true,
+        "stateLogEnabled": false,
+        "queueLogEnabled": false,
+        "failureLogEnabled": true,
+        "tcpHost": "py2modbus-server-lab-1",
+        "tcpPort": "5020",
+        "tcpType": "DEFAULT",
+        "serialPort": "/dev/ttyUSB",
+        "serialType": "RTU-BUFFERD",
+        "serialBaudrate": 9600,
+        "serialDatabits": 8,
+        "serialStopbits": 1,
+        "serialParity": "none",
+        "serialConnectionDelay": 100,
+        "serialAsciiResponseStartDelimiter": "0x3A",
+        "unit_id": 1,
+        "commandDelay": 1,
+        "clientTimeout": 1000,
+        "reconnectOnTimeout": true,
+        "reconnectTimeout": 2000,
+        "parallelUnitIdsAllowed": true,
+        "showErrors": false,
+        "showWarnings": true,
+        "showLogs": true
+    },
+    {
+        "id": "7844053a4146e535",
+        "type": "global-config",
+        "env": [],
+        "modules": {
+            "node-red-contrib-modbus": "5.45.2"
+        }
+    }
+]
