@@ -346,3 +346,82 @@ vscan2.start()
 ```
 
 #FactoryIO #ModbusTCP #pymodbus #Vscan #threading
+
+# [FactoryIO] 실습11 (원격다중접속제어)
+
+> **📓 ipynb 분석 요약** (pyfa04(ing).ipynb)
+
+- **주제/목적**: Factory IO와 Modbus TCP를 이용하여 데이터센터 냉각수 시스템의 밸브를 제어하고 수위를 모니터링하는 파이썬 노트북입니다.
+
+- **주요 흐름**:
+    - Modbus TCP 클라이언트를 생성하고 Factory IO 서버에 연결합니다.
+    - Fill Valve와 Discharge Valve의 아날로그 출력을 제어합니다.
+    - 여러 레지스터를 동시에 읽고 씁니다.
+    - 아날로그 입력을 주기적으로 읽어와 현재 수위와 배수량을 모니터링합니다.
+    - 수위 값에 따라 밸브 출력을 자동으로 조절하는 로직을 구현합니다.
+    - 모니터링 스레드를 시작하고 중지합니다.
+
+- **사용 기술**:
+    - `pymodbus.client.ModbusTcpClient`: Modbus TCP 통신 클라이언트
+    - `time` 라이브러리 (`tt` 별칭): 시간 지연
+    - `threading` 라이브러리: 비동기 모니터링 스레드
+
+- **결과/결론**:
+    - Modbus TCP를 통해 Factory IO의 밸브를 성공적으로 연결하고 제어할 수 있습니다.
+    - 실시간으로 수위 및 배수량 데이터를 읽어와 표시합니다.
+    - 수위 변화에 따라 Fill Valve의 출력이 자동으로 조절되는 것을 확인할 수 있습니다.
+    - 모니터링 스레드를 통해 시스템 상태를 실시간으로 감시할 수 있습니다.
+
+---
+
+![alt text](image-62.png)
+
+#FactoryIO #ModbusTCP #Python #자동화 #제어시스템
+
+# [FactoryIO] 실습12 (무게측정, 스케일 + 펄스기법, csv저장)
+
+![alt text](image-63.png)
+
+![alt text](image-64.png)
+
+![alt text](image-65.png)
+
+![alt text](image-66.png)
+
+- 중요점:
+>`전역변수설정` 
+> state = {"prev": False} ,
+> `상승 에지(0 → 1) 검출기법`
+> if sensor and not state["prev"]:
+
+- `csv 저장 및 시각화`
+![alt text](image-67.png)
+
+> **📓 ipynb 분석 요약** (pyfa05(완).ipynb)
+
+## 주제/목적
+Modbus TCP 통신을 사용하여 센서 값을 읽고, 특정 조건에서 무게 데이터를 로깅하며, 로깅된 데이터를 시각화
+
+## 주요 흐름
+*   Modbus TCP 클라이언트 초기화 및 연결.
+*   초기 출력 코일 설정.
+*   센서 값 변화(상승 에지) 감지 시 무게 데이터 읽기 및 CSV 파일에 로깅.
+*   로깅된 데이터 중 최신 20개 데이터를 그래프로 시각화.
+
+## 사용 기술
+*   `pymodbus`: Modbus TCP 통신 클라이언트 구현.
+*   `threading`: 센서 스캔을 백그라운드에서 실행.
+*   `csv`: 센서 데이터를 CSV 파일로 저장.
+*   `pandas`: CSV 파일 데이터를 DataFrame으로 로드.
+*   `matplotlib.pyplot`: 로깅된 무게 데이터를 그래프로 시각화.
+
+## 결과/결론
+*   Modbus TCP 연결 성공 여부 (True).
+*   코일 쓰기 응답 메시지.
+*   센서 입력에 따라 무게(kg) 값을 실시간으로 콘솔에 출력하고 CSV 파일(`work/weight_log.csv`)에 기록.
+*   최신 20개 무게 데이터를 시각화한 그래프 출력.
+
+---
+
+#FactoryIO #PLC #펄스 #자동화 #CSV저장 #시각화
+
